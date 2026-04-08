@@ -1,4 +1,3 @@
-
 # Home.py
 import streamlit as st
 import yfinance as yf
@@ -122,7 +121,7 @@ st.markdown("""
 # FUNÇÕES DE DADOS
 # ─────────────────────────────────────────
 
-@st.cache_data(ttl=300)  # cache 5 minutos
+@st.cache_data(ttl=300)
 def get_market_data():
     """Busca IBOV, VIX, USDBRL, PETR4, VALE3 via yfinance"""
     tickers = {
@@ -151,7 +150,7 @@ def get_market_data():
     return resultado
 
 
-@st.cache_data(ttl=3600)  # cache 1 hora
+@st.cache_data(ttl=3600)
 def get_selic():
     """Busca Selic atual via API do Banco Central"""
     try:
@@ -227,9 +226,9 @@ with st.sidebar:
     st.markdown("## 📈 Painel de Opções")
     st.markdown("---")
     st.markdown("**Navegação**")
-    st.page_link("Home.py",                         label="🏠 Home",         )
-    st.page_link("pages/1_Dashboard.py",             label="📊 Dashboard",    )
-    st.page_link("pages/4_Calculadora_de_Opcoes.py", label="🧮 Calculadora",  )
+    st.page_link("Home.py",                              label="🏠 Home")
+    st.page_link("pages/1_Dashboard.py",                 label="📊 Dashboard")
+    st.page_link("pages/2_Calculadora_de_Opcoes.py",     label="🧮 Calculadora")  # ← CORRIGIDO
     st.markdown("---")
     st.markdown(
         "<small style='color:#556677'>Dados via Yahoo Finance & BCB<br>"
@@ -275,7 +274,6 @@ c1, c2, c3, c4 = st.columns(4)
 def render_card(col, label, nome_key, selic_val=None):
     with col:
         if selic_val is not None:
-            # Card especial Selic
             st.markdown(f"""
             <div class='card'>
                 <div class='card-label'>🏦 Selic a.a.</div>
@@ -365,7 +363,7 @@ with n2:
     """, unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("Ir para a Calculadora →", use_container_width=True, key="btn_calc"):
-        st.switch_page("pages/4_Calculadora_de_Opcoes.py")
+        st.switch_page("pages/2_Calculadora_de_Opcoes.py")  # ← CORRIGIDO
 
 st.markdown("<hr class='divider'>", unsafe_allow_html=True)
 
